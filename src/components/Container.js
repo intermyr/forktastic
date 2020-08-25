@@ -125,7 +125,7 @@ const Container = () => {
       setShoppingList(shoppingList.filter((item) => item.id !== listItem.id));
     }
   };
-  
+
   return (
     <Wrapper>
       <Header
@@ -154,7 +154,10 @@ const Container = () => {
           handleShoppingList={handleShoppingList}
         />
       )}
-      <ShoppingList shoppingList={shoppingList} />
+      <ShoppingList
+        shoppingList={shoppingList}
+        handleDeleteShoppingItem={handleDeleteShoppingItem}
+      />
     </Wrapper>
   );
 };
