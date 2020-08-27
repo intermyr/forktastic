@@ -45,14 +45,14 @@ const Container = () => {
 
   const [servings, setServings] = usePersistedState("servings", null);
 
-  const { get, loading, error, response } = useFetch(
+  const { get, loading, response } = useFetch(
     "https://api.spoonacular.com/recipes"
   );
 
   const handleSearch = async (searchTerm) => {
     try {
       await get(
-        `complexSearch?apiKey=${apiKey}=${searchTerm}&number=30&sort=popularity&addRecipeInformation=true`
+        `complexSearch?apiKey=${apiKey}&query=${searchTerm}&number=30&sort=popularity&addRecipeInformation=true`
       );
       const data = await response.data.results;
       setSearchData(data);
