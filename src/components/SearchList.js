@@ -13,6 +13,7 @@ const ResultsList = styled.ul`
 `;
 
 export const ResultLink = styled.a`
+  height: 9rem;
   display: flex;
   align-items: center;
   padding: 1.5rem 3rem;
@@ -63,7 +64,7 @@ export const ResultAuthor = styled.p`
 //Pagination
 
 const PaginationButton = (props) => {
-  const onPageButtonClick = (event) => {
+  const onPageButtonClick = () => {
     if (props.prev) {
       props.setPage(props.page - 1);
     } else {
