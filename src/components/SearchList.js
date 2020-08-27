@@ -173,7 +173,7 @@ const SearchList = (props) => {
 
   return (
     <>
-      <Results style={{ maxHeight: `${props.height}px` }}>
+      <Results>
         <ResultsList>
           {listItems}
           <Pagination page={page} noOfPages={noOfPages} setPage={setPage} />
