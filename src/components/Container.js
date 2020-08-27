@@ -116,8 +116,28 @@ const Container = () => {
   };
 
   const handleShoppingList = (list) => {
-    setShoppingList((shoppingList) => [...shoppingList, list].flat());
+    if (shoppingList.length === 0) return setShoppingList(list);
+    let newList = [...shoppingList, ...list];
+    for (let i = 0; i < newList.length; i++) {
+      for (let j = i+1; j < newList.length; j++) {
+        if (newList[i].id === newList[j].id){
+          newList[i].amount += +newList[j].amount
+          newList.splice(j, 1)
+          j--
+        }        
+      }
+    }
+
+    setShoppingList(newList);
+
     console.log(shoppingList);
+  };
+
+  const handleChangeShoppingItem = (event, listItem) => {
+    const itemIndex = shoppingList.findIndex((item) => item.id === listItem.id);
+    let newList = [...shoppingList];
+    newList[itemIndex] = { ...newList[itemIndex], amount: event.target.value };
+    setShoppingList(newList);
   };
 
   const handleDeleteShoppingItem = (listItem) => {
@@ -132,22 +152,19 @@ const Container = () => {
         handleSearch={handleSearch}
         handleRecipe={handleRecipe}
         favorites={favorites}
+        loading={loading}
       />
       {searchData && (
-        <SearchList
-          handleRecipe={handleRecipe}
-          data={searchData}
-          loading={loading}
-          error={error}
-        />
+        <SearchList handleRecipe={handleRecipe} data={searchData} />
       )}
       {recipeData && (
         <Recipe
-          loading={loading}
           servings={servings}
           amounts={amounts}
           data={recipeData}
           favorites={favorites}
+          shoppingList={shoppingList}
+          setShoppingList={setShoppingList}
           handleDecreaseServings={handleDecreaseServings}
           handleIncreaseServings={handleIncreaseServings}
           handleFavorites={handleFavorites}
@@ -156,6 +173,7 @@ const Container = () => {
       )}
       <ShoppingList
         shoppingList={shoppingList}
+        handleChangeShoppingItem={handleChangeShoppingItem}
         handleDeleteShoppingItem={handleDeleteShoppingItem}
       />
     </Wrapper>
