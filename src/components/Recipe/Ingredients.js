@@ -42,7 +42,7 @@ const Count = styled.div`
 `;
 
 const Button = styled.button`
-  background-image: linear-gradient(to right bottom, #fbdb89, #f48982);
+background: linear-gradient(315deg, rgba(221,14,80,1) 22%, rgba(240,169,45,1) 100%);
   border-radius: 10rem;
   border: none;
   text-transform: uppercase;

@@ -68,7 +68,7 @@ const InfoData = styled.span`
 `;
 
 const Fav = styled.button`
-  background-image: linear-gradient(to right bottom, #fbdb89, #f48982);
+background: linear-gradient(315deg, rgba(221,14,80,1) 22%, rgba(240,169,45,1) 100%);
   border-radius: 50%;
   border: none;
   cursor: pointer;

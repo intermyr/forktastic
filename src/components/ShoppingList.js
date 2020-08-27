@@ -5,12 +5,7 @@ const Delete = styled.button`
   margin-top: 0.5rem;
   position: absolute;
   right: 0;
-  background-image: linear-gradient(
-    to right,
-    transparent 0%,
-    #fff 40%,
-    #fff 100%
-  );
+background: linear-gradient(315deg, rgba(221,14,80,1) 22%, rgba(240,169,45,1) 100%);
   width: 3.75rem;
   padding-left: 2rem;
   visibility: hidden;

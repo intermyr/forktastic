@@ -42,7 +42,7 @@ const Title = styled.h1`
   & span {
     box-decoration-break: clone;
     padding: 1.3rem 2rem;
-    background-image: linear-gradient(to right bottom, #fbdb89, #f48982);
+  background: linear-gradient(315deg, rgba(221,14,80,1) 22%, rgba(240,169,45,1) 100%);
   }
 `;
 

@@ -33,11 +33,7 @@ const SearchInput = styled.input`
 const SearchButton = styled.button`
   padding: 1.3rem 3rem;
   font-size: 1.4rem;
-  background-image: linear-gradient(
-    315deg,
-    rgba(194, 32, 56, 1) 22%,
-    rgba(240, 159, 45, 1) 100%
-  );
+background: linear-gradient(315deg, rgba(221,14,80,1) 22%, rgba(240,169,45,1) 100%);
   border-radius: 10rem;
   border: none;
   text-transform: uppercase;
