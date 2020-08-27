@@ -31,7 +31,8 @@ const Recipe = (props) => {
       <Ingredients
         amounts={props.amounts}
         data={props.data}
-        loading={props.loading}
+        shoppingList={props.shoppingList}
+        setShoppingList={props.setShoppingList}
         handleShoppingList={props.handleShoppingList}
       />
       <Directions data={props.data} />
