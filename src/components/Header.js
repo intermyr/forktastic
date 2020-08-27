@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Search from "./Search";
 import Favorites from "./Favorites";
+import Loading from "./Loading";
 
 const Wrapper = styled.header`
   grid-area: head;
@@ -11,20 +12,30 @@ const Wrapper = styled.header`
   justify-content: space-between;
 `;
 
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 150px
+`;
+
 const Logo = styled.img`
   margin-left: 4rem;
   height: 4.5rem;
   display: block;
 `;
 
-
-
 const Header = (props) => {
   return (
     <Wrapper>
-      <Logo src="logo.png" alt="Logo"></Logo>
-      <Search handleSearch={props.handleSearch}/>
-      <Favorites favorites={props.favorites} handleRecipe={props.handleRecipe}/>
+      <LogoContainer>
+        <Logo src="logo.png" alt="Logo" />
+        {props.loading && <Loading />}
+      </LogoContainer>
+      <Search handleSearch={props.handleSearch} />
+      <Favorites
+        favorites={props.favorites}
+        handleRecipe={props.handleRecipe}
+      />
     </Wrapper>
   );
 };
