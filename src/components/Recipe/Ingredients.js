@@ -103,7 +103,7 @@ const Ingredients = (props) => {
   const listShopping = props.data
     ? props.data.extendedIngredients.map((item, i) => ({
         id: item.id,
-        amount: props.amounts[i],
+        amount: Math.round((props.amounts[i] + Number.EPSILON) * 10) / 10,
         unit: item.measures.metric.unitShort.toLowerCase(),
         name: item.name,
       }))
@@ -112,7 +112,12 @@ const Ingredients = (props) => {
   return (
     <Container>
       <List>{listIngredients}</List>
-      <Button onClick={() => props.handleShoppingList(listShopping)}>
+      <Button
+        onClick={() => {
+          console.log(listShopping);
+          props.handleShoppingList(listShopping);
+        }}
+      >
         <svg>
           <use href="icons.svg#icon-shopping-cart"></use>
         </svg>

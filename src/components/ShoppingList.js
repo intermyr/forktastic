@@ -48,7 +48,8 @@ const Heading = styled.h2`
 
 const List = styled.ul`
   list-style: none;
-  max-height: 77rem;
+  width: 25rem;
+  max-height: 90rem;
   overflow: scroll;
 
   &::-webkit-scrollbar {
@@ -85,8 +86,8 @@ const Count = styled.div`
     font-size: 1.2rem;
     text-align: center;
     border: none;
-    width: 3.7rem;
     border-radius: 3px;
+    max-width: 5rem;
   }
 
   & p {
@@ -113,16 +114,30 @@ const ApiLink = styled.a`
   }
 `;
 
-const ShoppingList = ({ shoppingList }) => {
+const ShoppingList = ({
+  shoppingList,
+  handleDeleteShoppingItem,
+  handleChangeShoppingItem,
+}) => {
   const listItems = shoppingList
-    ? shoppingList.map((item) => (
-        <Item key={item.id}>
+    ? shoppingList.map((item, i) => (
+        <Item key={i}>
           <Count>
-            <input type="number" defaultValue={item.amount} step={item.amount} />
+            <input
+              type="number"
+              value={item.amount}
+              onChange={(event) => handleChangeShoppingItem(event, item)}
+              min={0}
+            />
             <p>{item.unit}</p>
           </Count>
           <Description>{item.name}</Description>
-          <Delete>
+          <Delete
+            onClick={() => {
+              handleDeleteShoppingItem(item);
+              console.log(shoppingList);
+            }}
+          >
             <svg>
               <use href="icons.svg#icon-circle-with-cross"></use>
             </svg>
