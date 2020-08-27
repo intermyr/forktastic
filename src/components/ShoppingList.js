@@ -45,8 +45,8 @@ const List = styled.ul`
   list-style: none;
   width: 25rem;
   max-height: 90rem;
-  overflow: scroll;
-
+  overflow: auto;
+  scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -82,7 +82,7 @@ const Count = styled.div`
     text-align: center;
     border: none;
     border-radius: 3px;
-    max-width: 5rem;
+    max-width: 6.5rem;
   }
 
   & p {
