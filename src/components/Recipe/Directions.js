@@ -9,15 +9,6 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const DirectionsHeading = styled.h2`
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #f59a83;
-  text-transform: uppercase;
-  margin-bottom: 2.5rem;
-  text-align: center;
-`;
-
 const DirectionsList = styled.ul`
   list-style-type: none;
   padding: 0rem 3rem;
@@ -48,7 +39,6 @@ const Directions = (props) => {
 
   return (
     <Container>
-      {/* <DirectionsHeading>How to cook it</DirectionsHeading> */}
       <DirectionsList>{listDirections}</DirectionsList>
     </Container>
   );
