@@ -12,13 +12,13 @@ const Wrapper = styled.header`
   justify-content: space-between;
 `;
 
-const LogoContainer = styled.div`
+export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
   width: 150px
 `;
 
-const Logo = styled.img`
+export const Logo = styled.img`
   margin-left: 4rem;
   height: 4.5rem;
   display: block;

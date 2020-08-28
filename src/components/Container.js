@@ -2,13 +2,14 @@ import React from "react";
 import useFetch from "use-http";
 import styled from "styled-components";
 
-import { apiKey } from "../utils";
+import { apiKey } from "../api";
 import usePersistedState from "../hooks/usePersistedState";
 
-import Header from "./Header";
+import Header, { Logo } from "./Header";
 import SearchList from "./SearchList";
 import Recipe from "./Recipe/RecipeContainer";
 import ShoppingList from "./ShoppingList";
+import { round } from "../utils";
 
 const Wrapper = styled.div`
   max-width: 120rem;
@@ -32,6 +33,19 @@ const Wrapper = styled.div`
     }
   }
 `;
+
+const Placeholder = styled.div`
+  grid-area: recipe;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 35rem;
+
+  & h1 {
+    font-size: 2rem;
+  }
+`;
+
 const Container = () => {
   const [shoppingList, setShoppingList] = usePersistedState("shopping", []);
 
@@ -119,12 +133,12 @@ const Container = () => {
     if (shoppingList.length === 0) return setShoppingList(list);
     let newList = [...shoppingList, ...list];
     for (let i = 0; i < newList.length; i++) {
-      for (let j = i+1; j < newList.length; j++) {
-        if (newList[i].id === newList[j].id){
-          newList[i].amount += +newList[j].amount
-          newList.splice(j, 1)
-          j--
-        }        
+      for (let j = i + 1; j < newList.length; j++) {
+        if (newList[i].id === newList[j].id) {
+          newList[i].amount = round(newList[j].amount + +newList[i].amount);
+          newList.splice(j, 1);
+          j--;
+        }
       }
     }
 
@@ -154,6 +168,12 @@ const Container = () => {
         favorites={favorites}
         loading={loading}
       />
+      {!searchData && !recipeData && (
+        <Placeholder>
+            <Logo src="logo.png" alt="Logo" style={{marginLeft: 0, height: '8rem'}} />
+          <h1>Search through hundreds of thousands of recipes.</h1>
+        </Placeholder>
+      )}
       {searchData && (
         <SearchList handleRecipe={handleRecipe} data={searchData} />
       )}
