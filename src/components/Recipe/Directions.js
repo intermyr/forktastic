@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  padding: 4rem;
-  padding-bottom: 5rem;
+  counter-reset: step;
+  padding: 2rem 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,19 +26,21 @@ const DirectionsList = styled.ul`
 const DirectionsStep = styled.li`
   font-size: 1.5rem;
   margin: 0.5rem 0;
-`;
 
-const DirectionsNumber = styled.span`
-  margin-right: 0.5rem;
-  color: orange;
-  font-weight: bold;
+  &::before {
+    counter-increment: step;
+    content: counter(step) ".";
+    margin-right: 0.5rem;
+    color: orange;
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
 `;
 
 const Directions = (props) => {
-    const listDirections = props.data
+  const listDirections = props.data
     ? props.data.analyzedInstructions[0]?.steps.map((item) => (
         <DirectionsStep key={item.number}>
-          <DirectionsNumber>{item.number}.</DirectionsNumber>
           {item.step.replace(/\.(?=[^\s])/g, ". ")}
         </DirectionsStep>
       ))
@@ -46,7 +48,7 @@ const Directions = (props) => {
 
   return (
     <Container>
-      <DirectionsHeading>How to cook it</DirectionsHeading>
+      {/* <DirectionsHeading>How to cook it</DirectionsHeading> */}
       <DirectionsList>{listDirections}</DirectionsList>
     </Container>
   );
