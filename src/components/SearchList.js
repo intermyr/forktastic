@@ -163,7 +163,11 @@ const SearchList = (props) => {
                 <ResultImg src={item.image} alt={item.title} />
               </ResultFig>
               <div>
-                <ResultName>{item.title}</ResultName>
+                <ResultName>
+                  {item.title.length > 50
+                    ? item.title.substring(0, 50) + "..."
+                    : item.title}
+                </ResultName>
                 <ResultAuthor>{item.sourceName}</ResultAuthor>
               </div>
             </ResultLink>
