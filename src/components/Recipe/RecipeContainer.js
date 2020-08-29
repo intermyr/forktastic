@@ -8,7 +8,7 @@ import Directions from "./Directions";
 const RecipeContainer = styled.div`
   background-color: #f9f5f3;
   border-top: 1px solid #fff;
-
+  grid-area: "recipe";
   &:hover ${InfoButtons} {
     visibility: visible;
     opacity: 1;
@@ -40,7 +40,7 @@ const MenuButton = styled.button`
   padding: 1rem 1.75rem;
   text-decoration: none;
   filter: ${(props) => (props.active ? "none" : "grayscale(90%) opacity(50%)")};
-  
+
   &:first-child {
     border-radius: 10rem 0 0 10rem;
     background: linear-gradient(
