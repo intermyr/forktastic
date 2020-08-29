@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
+import usePersistedState from "../hooks/usePersistedState";
 
 const SearchForm = styled.form`
   background-color: #fff;
@@ -33,7 +34,11 @@ const SearchInput = styled.input`
 const SearchButton = styled.button`
   padding: 1.3rem 3rem;
   font-size: 1.4rem;
-background: linear-gradient(315deg, rgba(221,14,80,1) 22%, rgba(240,169,45,1) 100%);
+  background: linear-gradient(
+    315deg,
+    rgba(221, 14, 80, 1) 22%,
+    rgba(240, 169, 45, 1) 100%
+  );
   border-radius: 10rem;
   border: none;
   text-transform: uppercase;
@@ -52,7 +57,8 @@ const SearchIcon = styled.svg`
 `;
 
 const Search = (props) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = usePersistedState("term", "");
+
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
