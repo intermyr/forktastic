@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import usePersistedState from "../hooks/usePersistedState";
 
 const SearchForm = styled.form`
   background-color: #fff;
@@ -57,14 +56,13 @@ const SearchIcon = styled.svg`
 `;
 
 const Search = (props) => {
-  const [searchTerm, setSearchTerm] = usePersistedState("term", "");
 
   const handleChange = (event) => {
-    setSearchTerm(event.target.value);
+    props.setSearchTerm(event.target.value);
   };
 
   const handleSubmit = (event) => {
-    props.handleSearch(searchTerm);
+    props.handleSearch(props.searchTerm);
     event.preventDefault();
   };
 
@@ -72,7 +70,7 @@ const Search = (props) => {
     <SearchForm>
       <SearchInput
         placeholder="Search over 100,000 recipes..."
-        value={searchTerm}
+        value={props.searchTerm}
         onChange={handleChange}
       />
       <SearchButton onClick={handleSubmit}>

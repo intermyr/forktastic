@@ -59,6 +59,8 @@ const Container = () => {
 
   const [recipeData, setRecipeData] = usePersistedState("recipe", null);
 
+  const [searchTerm, setSearchTerm] = usePersistedState("term", "");
+
   const [searchData, setSearchData] = usePersistedState("search", null);
 
   const [amounts, setAmounts] = usePersistedState("amounts", null);
@@ -76,7 +78,8 @@ const Container = () => {
       );
       const data = await response.data.results;
       setSearchData(data);
-      history.push(`search?q=${searchTerm}&id=${query.get("id")}`)
+      console.log(data)
+      history.push(`search?q=${searchTerm}&id=${query.get("id")}`);
     } catch (error) {
       alert(error);
     }
@@ -92,7 +95,7 @@ const Container = () => {
       );
       setAmounts(ingredientsAmount);
       setRecipeData(data);
-      history.push(`search?q=${query.get("q")}&id=${id}`)
+      history.push(`search?q=${query.get("q")}&id=${id}`);
     } catch (error) {
       alert(error);
     }
@@ -101,11 +104,16 @@ const Container = () => {
   useEffect(() => {
     if (query.get("q")) {
       handleSearch(query.get("q"));
+    } else {
+      history.push(`search?q=${searchTerm}&id=${query.get("id")}`);
     }
     if (query.get("id")) {
       handleRecipe(query.get("id"));
+    } else {
+      history.push(`search?q=${query.get("q")}&id=${recipeData ? recipeData.id : null}`);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleDecreaseServings = () => {
@@ -181,6 +189,8 @@ const Container = () => {
       <Header
         handleSearch={handleSearch}
         handleRecipe={handleRecipe}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
         favorites={favorites}
         loading={loading}
       />

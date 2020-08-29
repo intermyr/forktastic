@@ -15,7 +15,7 @@ const Wrapper = styled.header`
 export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 150px
+  width: 150px;
 `;
 
 export const Logo = styled.img`
@@ -31,7 +31,11 @@ const Header = (props) => {
         <Logo src="logo.png" alt="Logo" />
         {props.loading && <Loading />}
       </LogoContainer>
-      <Search handleSearch={props.handleSearch} />
+      <Search
+        handleSearch={props.handleSearch}
+        searchTerm={props.searchTerm}
+        setSearchTerm={props.setSearchTerm}
+      />
       <Favorites
         favorites={props.favorites}
         handleRecipe={props.handleRecipe}
