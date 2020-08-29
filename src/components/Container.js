@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useFetch from "use-http";
 import styled from "styled-components";
 
 import { apiKey } from "../api";
 import usePersistedState from "../hooks/usePersistedState";
+import useQuery from "../hooks/useQuery";
 
 import Header, { Logo } from "./Header";
 import SearchList from "./SearchList";
 import Recipe from "./Recipe/RecipeContainer";
 import ShoppingList from "./ShoppingList";
 import { round } from "../utils";
+import { useHistory } from "react-router-dom";
 
 const Wrapper = styled.div`
   max-width: 120rem;
@@ -47,6 +49,10 @@ const Placeholder = styled.div`
 `;
 
 const Container = () => {
+  const query = useQuery();
+
+  const history = useHistory();
+
   const [shoppingList, setShoppingList] = usePersistedState("shopping", []);
 
   const [favorites, setFavorites] = usePersistedState("favorites", []);
@@ -70,7 +76,7 @@ const Container = () => {
       );
       const data = await response.data.results;
       setSearchData(data);
-      console.log(data);
+      history.push(`search?q=${searchTerm}&id=${query.get("id")}`)
     } catch (error) {
       alert(error);
     }
@@ -86,11 +92,21 @@ const Container = () => {
       );
       setAmounts(ingredientsAmount);
       setRecipeData(data);
-      console.log(data);
+      history.push(`search?q=${query.get("q")}&id=${id}`)
     } catch (error) {
       alert(error);
     }
   };
+
+  useEffect(() => {
+    if (query.get("q")) {
+      handleSearch(query.get("q"));
+    }
+    if (query.get("id")) {
+      handleRecipe(query.get("id"));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleDecreaseServings = () => {
     if (servings > 1) {
@@ -170,7 +186,11 @@ const Container = () => {
       />
       {!searchData && !recipeData && (
         <Placeholder>
-            <Logo src="logo.png" alt="Logo" style={{marginLeft: 0, height: '8rem'}} />
+          <Logo
+            src="logo.png"
+            alt="Logo"
+            style={{ marginLeft: 0, height: "8rem" }}
+          />
           <h1>Search through hundreds of thousands of recipes.</h1>
         </Placeholder>
       )}
