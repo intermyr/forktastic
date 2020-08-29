@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { round } from "../../utils";
 
 const Container = styled.div`
   padding: 4rem 5rem;
@@ -41,7 +42,11 @@ const Count = styled.div`
 `;
 
 const Button = styled.button`
-background: linear-gradient(315deg, rgba(221,14,80,1) 22%, rgba(240,169,45,1) 100%);
+  background: linear-gradient(
+    315deg,
+    rgba(221, 14, 80, 1) 22%,
+    rgba(240, 169, 45, 1) 100%
+  );
   border-radius: 10rem;
   border: none;
   text-transform: uppercase;
@@ -80,9 +85,7 @@ const Ingredients = (props) => {
           <Icon>
             <use href="icons.svg#icon-check"></use>
           </Icon>
-          <Count>
-            {Math.round((props.amounts[i] + Number.EPSILON) * 10) / 10}
-          </Count>
+          <Count>{round(props.amounts[i])}</Count>
           <div>
             <span
               style={{
