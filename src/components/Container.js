@@ -105,12 +105,12 @@ const Container = () => {
     if (query.get("q")) {
       handleSearch(query.get("q"));
     } else {
-      history.push(`search?q=${searchTerm}&id=${query.get("id")}`);
+      searchData && history.push(`search?q=${searchTerm}&id=${query.get("id")}`);
     }
     if (query.get("id")) {
       handleRecipe(query.get("id"));
     } else {
-      history.push(`search?q=${query.get("q")}&id=${recipeData ? recipeData.id : null}`);
+      recipeData && history.push(`search?q=${query.get("q")}&id=${recipeData ? recipeData.id : ''}`);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
