@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const InfoButtons = styled.div`
   display: flex;
-  margin-left: 1.5rem;
+  margin-left: auto;
   visibility: hidden;
   opacity: 0;
   transform: translateY(5px);
@@ -50,7 +50,11 @@ const Info = styled.div`
   display: flex;
   align-items: center;
 
-  &:not(:last-child) {
+  &:nth-child(2) {
+    width: 180px;
+  }
+
+  &:first-child {
     margin-right: 4rem;
   }
 `;
@@ -68,7 +72,11 @@ const InfoData = styled.span`
 `;
 
 const Fav = styled.button`
-background: linear-gradient(315deg, rgba(221,14,80,1) 22%, rgba(240,169,45,1) 100%);
+  background: linear-gradient(
+    315deg,
+    rgba(221, 14, 80, 1) 22%,
+    rgba(240, 169, 45, 1) 100%
+  );
   border-radius: 50%;
   border: none;
   cursor: pointer;
