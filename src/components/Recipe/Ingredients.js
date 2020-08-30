@@ -81,7 +81,7 @@ const Button = styled.button`
 const Ingredients = (props) => {
   const listIngredients = props.data
     ? props.data.extendedIngredients.map((item, i) => (
-        <Item>
+        <Item key={i}>
           <Icon>
             <use href="icons.svg#icon-check"></use>
           </Icon>
