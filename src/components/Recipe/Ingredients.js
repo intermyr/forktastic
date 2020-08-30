@@ -105,7 +105,7 @@ const Ingredients = (props) => {
   const listShopping = props.data
     ? props.data.extendedIngredients.map((item, i) => ({
         id: item.id,
-        amount: Math.round((props.amounts[i] + Number.EPSILON) * 10) / 10,
+        amount: round(props.amounts[i]),
         unit: item.measures.metric.unitShort.toLowerCase(),
         name: item.name,
       }))
