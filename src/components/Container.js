@@ -10,7 +10,6 @@ import Header, { Logo } from "./Header";
 import SearchList from "./SearchList";
 import Recipe from "./Recipe/RecipeContainer";
 import ShoppingList from "./ShoppingList";
-import { round } from "../utils";
 import { useHistory } from "react-router-dom";
 
 const Wrapper = styled.div`
@@ -59,7 +58,7 @@ const Container = () => {
 
   const [recipeData, setRecipeData] = usePersistedState("recipe", null);
 
-  const [searchTerm, setSearchTerm] = usePersistedState("term", "");
+  const [searchTerm, setSearchTerm] = usePersistedState("term", null);
 
   const [searchData, setSearchData] = usePersistedState("search", null);
 
@@ -78,7 +77,6 @@ const Container = () => {
       );
       const data = await response.data.results;
       setSearchData(data);
-      console.log(data)
       history.push(`search?q=${searchTerm}&id=${query.get("id")}`);
     } catch (error) {
       alert(error);
@@ -105,12 +103,16 @@ const Container = () => {
     if (query.get("q")) {
       handleSearch(query.get("q"));
     } else {
-      searchData && history.push(`search?q=${searchTerm}&id=${query.get("id")}`);
+      searchData &&
+        history.push(`search?q=${searchTerm}&id=${query.get("id")}`);
     }
     if (query.get("id")) {
       handleRecipe(query.get("id"));
     } else {
-      recipeData && history.push(`search?q=${query.get("q")}&id=${recipeData ? recipeData.id : ''}`);
+      recipeData &&
+        history.push(
+          `search?q=${searchTerm}&id=${recipeData ? recipeData.id : ""}`
+        );
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -159,7 +161,7 @@ const Container = () => {
     for (let i = 0; i < newList.length; i++) {
       for (let j = i + 1; j < newList.length; j++) {
         if (newList[i].id === newList[j].id) {
-          newList[i].amount = round(newList[j].amount + +newList[i].amount);
+          newList[i].amount += +newList[i].amount;
           newList.splice(j, 1);
           j--;
         }
@@ -167,8 +169,6 @@ const Container = () => {
     }
 
     setShoppingList(newList);
-
-    console.log(shoppingList);
   };
 
   const handleChangeShoppingItem = (event, listItem) => {
