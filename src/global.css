@@ -21,12 +21,6 @@ html {
   }
 }
 
-@media only screen and (max-width: 400px) {
-  html {
-    font-size: 40%;
-  }
-}
-
 body {
   font-family: "Nunito Sans", sans-serif;
   font-weight: 400;
