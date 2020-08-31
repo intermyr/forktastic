@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useFetch from "use-http";
 import styled from "styled-components";
 
