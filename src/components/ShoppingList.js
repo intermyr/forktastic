@@ -29,7 +29,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  grid-area: shopping;
+  grid-area: "shopping";
 `;
 
 const Heading = styled.h2`

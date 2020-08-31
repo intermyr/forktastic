@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Search from "./Search";
 import Favorites from "./Favorites";
 import Loading from "./Loading";
+import useWindowSize from "../hooks/useWindowSize";
 
 const Wrapper = styled.header`
   grid-area: head;
@@ -16,19 +17,26 @@ export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
   width: 150px;
+  margin-left: 4rem;
+  @media only screen and (max-width: 600px) {
+    & {
+      margin-left: 3.5rem;
+      width: 0px;
+    }
+  }
 `;
 
 export const Logo = styled.img`
-  margin-left: 4rem;
   height: 4.5rem;
   display: block;
 `;
 
 const Header = (props) => {
+  const width = useWindowSize().width;
   return (
     <Wrapper>
       <LogoContainer>
-        <Logo src="logo.png" alt="Logo" />
+        <Logo src={width < 600 ? "logo-short.png" : "logo.png"} alt="Logo" />
         {props.loading && <Loading />}
       </LogoContainer>
       <Search

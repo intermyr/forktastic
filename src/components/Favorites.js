@@ -10,8 +10,6 @@ import {
 
 const FavoritesContainer = styled.div`
   position: relative;
-  align-self: stretch;
-  padding: 0;
 `;
 
 const FavField = styled.div`
@@ -22,8 +20,15 @@ const FavField = styled.div`
   height: 100%;
   transition: all 0.3s;
 
-  &:hover {
-    background-color: #f2efee;
+  &:hover svg {
+    fill: #dd0e50;
+  }
+
+  @media only screen and (max-width: 900px) {
+    & {
+      padding: 0 0;
+      margin-right: 3.5rem;
+    }
   }
 `;
 
@@ -31,6 +36,7 @@ const FavIcon = styled.svg`
   fill: #f59a83;
   height: 3.75rem;
   width: 3.75rem;
+  transition: all 0.3s;
 `;
 
 const FavPanel = styled.div`
@@ -45,7 +51,7 @@ const FavPanel = styled.div`
   visibility: hidden;
   opacity: 0;
   transition: all 0.5s 0.2s;
-  
+
   &:hover,
   ${FavField}:hover + & {
     visibility: ${(props) => (props.open ? "visible" : "hidden")};

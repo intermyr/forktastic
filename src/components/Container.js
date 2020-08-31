@@ -27,10 +27,21 @@ const Wrapper = styled.div`
     "list recipe shopping";
 
   @media only screen and (max-width: 68.75em) {
-    .container {
+    & {
       width: 100%;
-      margin: 0;
+      margin: auto;
       border-radius: 0;
+    }
+  }
+  @media only screen and (max-width: 900px) {
+    & {
+      grid-template-rows: 10rem repeat(3, minmax(100rem, auto));
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "head"
+        "list"
+        "recipe"
+        "shopping";
     }
   }
 `;
@@ -58,7 +69,7 @@ const Container = () => {
 
   const [recipeData, setRecipeData] = usePersistedState("recipe", null);
 
-  const [searchTerm, setSearchTerm] = usePersistedState("term", null);
+  const [searchTerm, setSearchTerm] = usePersistedState("term", "");
 
   const [searchData, setSearchData] = usePersistedState("search", null);
 
@@ -99,24 +110,24 @@ const Container = () => {
     }
   };
 
-  useEffect(() => {
-    if (query.get("q")) {
-      handleSearch(query.get("q"));
-    } else {
-      searchData &&
-        history.push(`search?q=${searchTerm}&id=${query.get("id")}`);
-    }
-    if (query.get("id")) {
-      handleRecipe(query.get("id"));
-    } else {
-      recipeData &&
-        history.push(
-          `search?q=${searchTerm}&id=${recipeData ? recipeData.id : ""}`
-        );
-    }
+  // useEffect(() => {
+  //   if (query.get("q")) {
+  //     handleSearch(query.get("q"));
+  //   } else {
+  //     searchData &&
+  //       history.push(`search?q=${searchTerm}&id=${query.get("id")}`);
+  //   }
+  //   if (query.get("id")) {
+  //     handleRecipe(query.get("id"));
+  //   } else {
+  //     recipeData &&
+  //       history.push(
+  //         `search?q=${searchTerm}&id=${recipeData ? recipeData.id : ""}`
+  //       );
+  //   }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const handleDecreaseServings = () => {
     if (servings > 1) {

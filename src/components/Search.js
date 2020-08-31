@@ -28,6 +28,16 @@ const SearchInput = styled.input`
   &::placeholder {
     color: #dad0cc;
   }
+
+  @media only screen and (max-width: 500px) {
+    & {
+      width: auto;
+    }
+
+    &::placeholder {
+      color: white;
+    }
+  }
 `;
 
 const SearchButton = styled.button`
@@ -46,6 +56,20 @@ const SearchButton = styled.button`
   display: flex;
   align-items: center;
   transition: all 0.2s;
+
+  @media only screen and (max-width: 600px) {
+    & svg {
+      margin-right: 0;
+    }
+
+    & {
+      padding: 1.3rem 1.3rem;
+    }
+
+    & span {
+      display: none;
+    }
+  }
 `;
 
 const SearchIcon = styled.svg`
@@ -56,7 +80,6 @@ const SearchIcon = styled.svg`
 `;
 
 const Search = (props) => {
-
   const handleChange = (event) => {
     props.setSearchTerm(event.target.value);
   };
