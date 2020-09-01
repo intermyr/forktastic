@@ -5,9 +5,16 @@ export const InfoButtons = styled.div`
   display: flex;
   margin-left: auto;
   visibility: hidden;
-  opacity: 0;
   transform: translateY(5px);
   transition: all 0.4s;
+
+  @media only screen and (max-width: 900px) {
+    & {
+      transform: initial;
+      opacity: 1;
+      visibility: initial;
+    }
+  }
 `;
 
 const ServingsButton = styled.button`
@@ -41,7 +48,29 @@ const ServingsButton = styled.button`
 const DetailsContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 8rem 3rem 3rem 3rem;
+
+  @media only screen and (max-width: 400px) {
+    & {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas:
+        "info fav"
+        "info fav";
+    }
+  }
+`;
+
+const InfoContainer = styled.div`
+  display: flex;
+  grid-area: info;
+  @media only screen and (max-width: 400px) {
+    & {
+      flex-direction: column;
+    }
+  }
 `;
 
 const Info = styled.div`
@@ -49,9 +78,10 @@ const Info = styled.div`
   text-transform: uppercase;
   display: flex;
   align-items: center;
-
+  margin-bottom: 1rem;
+  
   &:nth-child(2) {
-    width: 180px;
+    width: 17.5rem;
   }
 
   &:first-child {
@@ -87,6 +117,7 @@ const Fav = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  grid-area: fav;
 
   &:hover {
     transform: scale(1.07);
@@ -102,32 +133,34 @@ const Fav = styled.button`
 const Details = (props) => {
   return (
     <DetailsContainer>
-      <Info>
-        <InfoIcon>
-          <use href="icons.svg#icon-stopwatch"></use>
-        </InfoIcon>
-        <InfoData>{props.data.readyInMinutes}</InfoData>
-        <span>minutes</span>
-      </Info>
-      <Info>
-        <InfoIcon>
-          <use href="icons.svg#icon-man"></use>
-        </InfoIcon>
-        <InfoData>{props.servings}</InfoData>
-        <span>servings</span>
-        <InfoButtons>
-          <ServingsButton onClick={props.handleDecreaseServings}>
-            <svg>
-              <use href="icons.svg#icon-circle-with-minus"></use>
-            </svg>
-          </ServingsButton>
-          <ServingsButton onClick={props.handleIncreaseServings}>
-            <svg>
-              <use href="icons.svg#icon-circle-with-plus"></use>
-            </svg>
-          </ServingsButton>
-        </InfoButtons>
-      </Info>
+      <InfoContainer>
+        <Info>
+          <InfoIcon>
+            <use href="icons.svg#icon-stopwatch"></use>
+          </InfoIcon>
+          <InfoData>{props.data.readyInMinutes}</InfoData>
+          <span>minutes</span>
+        </Info>
+        <Info>
+          <InfoIcon>
+            <use href="icons.svg#icon-man"></use>
+          </InfoIcon>
+          <InfoData>{props.servings}</InfoData>
+          <span>servings</span>
+          <InfoButtons>
+            <ServingsButton onClick={props.handleDecreaseServings}>
+              <svg>
+                <use href="icons.svg#icon-circle-with-minus"></use>
+              </svg>
+            </ServingsButton>
+            <ServingsButton onClick={props.handleIncreaseServings}>
+              <svg>
+                <use href="icons.svg#icon-circle-with-plus"></use>
+              </svg>
+            </ServingsButton>
+          </InfoButtons>
+        </Info>
+      </InfoContainer>
       <Fav onClick={() => props.handleFavorites(props.data)}>
         <svg>
           <use

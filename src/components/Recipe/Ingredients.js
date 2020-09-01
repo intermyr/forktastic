@@ -18,6 +18,12 @@ const List = styled.ul`
   grid-row-gap: 2.5rem;
   list-style: none;
   margin-bottom: 3rem;
+
+  @media only screen and (max-width: 500px) {
+    & {
+      grid-template-columns: 1fr;
+    }
+  }
 `;
 
 const Item = styled.li`

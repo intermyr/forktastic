@@ -6,9 +6,9 @@ const SearchForm = styled.form`
   border-radius: 10rem;
   display: flex;
   align-items: center;
-  padding-left: 3rem;
+  align-self: center;
   transition: all 0.3s;
-
+  height: 5rem;
   &:focus-within {
     transform: translateY(-2px);
     box-shadow: 0 0.7rem 3rem rgba(101, 90, 86, 0.08);
@@ -16,6 +16,7 @@ const SearchForm = styled.form`
 `;
 
 const SearchInput = styled.input`
+  text-indent: 1.5em;
   border: none;
   background: none;
   font-family: inherit;
@@ -29,7 +30,7 @@ const SearchInput = styled.input`
     color: #dad0cc;
   }
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 450px) {
     & {
       width: auto;
     }

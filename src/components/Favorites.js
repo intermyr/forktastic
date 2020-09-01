@@ -10,11 +10,12 @@ import {
 
 const FavoritesContainer = styled.div`
   position: relative;
+  justify-self: flex-end;
 `;
 
 const FavField = styled.div`
   cursor: pointer;
-  padding: 0 4rem;
+  margin-right: 4rem;
   display: flex;
   align-items: center;
   height: 100%;
@@ -26,7 +27,6 @@ const FavField = styled.div`
 
   @media only screen and (max-width: 900px) {
     & {
-      padding: 0 0;
       margin-right: 3.5rem;
     }
   }
@@ -34,15 +34,15 @@ const FavField = styled.div`
 
 const FavIcon = styled.svg`
   fill: #f59a83;
-  height: 3.75rem;
-  width: 3.75rem;
+  height: 30px;
+  width: 30px;
   transition: all 0.3s;
 `;
 
 const FavPanel = styled.div`
   position: absolute;
-  right: 0;
   top: 10rem;
+  right: 0;
   z-index: 10;
   padding: 2rem 0;
   width: 34rem;
@@ -62,6 +62,7 @@ const FavPanel = styled.div`
 const FavList = styled.ul`
   list-style: none;
 `;
+
 const Favorites = (props) => {
   const listFavs = props.favorites
     ? props.favorites.map((item) => (

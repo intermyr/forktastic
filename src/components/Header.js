@@ -8,9 +8,8 @@ import useWindowSize from "../hooks/useWindowSize";
 const Wrapper = styled.header`
   grid-area: head;
   background-color: #f9f5f3;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 `;
 
 export const LogoContainer = styled.div`
