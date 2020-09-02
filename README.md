@@ -7,5 +7,5 @@
 - See the ingredients
 - Create shopping lists
 
-Made with create-react-app and styled-components
+Made with create-react-app and styled-components  
 Powered by spoonacular.com
