@@ -129,7 +129,7 @@ const Ingredients = (props) => {
         <svg>
           <use href="icons.svg#icon-shopping-cart"></use>
         </svg>
-        <span>Add to shoping list</span>
+        <span>Add to shopping list</span>
       </Button>
     </Container>
   );

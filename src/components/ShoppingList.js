@@ -5,7 +5,11 @@ const Delete = styled.button`
   margin-top: 0.5rem;
   position: absolute;
   right: 0;
-background: linear-gradient(315deg, rgba(221,14,80,1) 22%, rgba(240,169,45,1) 100%);
+  background: linear-gradient(
+    315deg,
+    rgba(221, 14, 80, 1) 22%,
+    rgba(240, 169, 45, 1) 100%
+  );
   width: 3.75rem;
   padding-left: 2rem;
   visibility: hidden;
@@ -29,13 +33,47 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  grid-area: "shopping";
+  grid-area: shopping;
+`;
+
+const DeleteAll = styled.button`
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s;
+  border: none;
+  background: none;
+  height: 1.5rem;
+  cursor: pointer;
+
+  & svg {
+    margin-left: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: #f59a83;
+  }
 `;
 
 const Heading = styled.h2`
   font-size: 1.8rem;
   font-weight: 600;
   color: #f59a83;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  margin-left: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  &:hover ${DeleteAll} {
+    opacity: 1;
+    visibility: visible;
+  }
+`;
+
+const Placeholder = styled.p`
+  font-weight: 600;
+  color: #968b87;
   text-transform: uppercase;
   margin-bottom: 2.5rem;
   text-align: center;
@@ -101,9 +139,18 @@ const Copyright = styled.div`
   color: #968b87;
   font-size: 1.2rem;
   margin-top: auto;
+
+  @media only screen and (max-width: 900px) {
+    & {
+      display: none;
+    }
+  }
 `;
 
 const ApiLink = styled.a`
+  &:link {
+    color: #968b87;
+  }
   &:visited {
     color: #968b87;
   }
@@ -113,6 +160,7 @@ const ShoppingList = ({
   shoppingList,
   handleDeleteShoppingItem,
   handleChangeShoppingItem,
+  handleDeleteAllShoppingItems,
 }) => {
   const listItems = shoppingList
     ? shoppingList.map((item, i) => (
@@ -142,7 +190,17 @@ const ShoppingList = ({
     : null;
   return (
     <Container>
-      <Heading>{!!listItems.length && `Shopping List`}</Heading>
+      <Heading>
+        Shopping List
+        <DeleteAll onClick={handleDeleteAllShoppingItems}>
+          <svg>
+            <use href="icons.svg#icon-circle-with-cross"></use>
+          </svg>
+        </DeleteAll>
+      </Heading>
+      {!shoppingList.length && (
+        <Placeholder>You can add items at ingredients tab</Placeholder>
+      )}
       <List>{listItems}</List>
       <Copyright>
         © by Alexander Muratidi

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Results = styled.div`
   padding: 2rem 0;
-  grid-area: "list";
+  grid-area: list;
   ::-webkit-scrollbar {
     display: none;
   }

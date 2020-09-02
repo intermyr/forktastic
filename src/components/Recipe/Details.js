@@ -6,6 +6,7 @@ export const InfoButtons = styled.div`
   margin-left: auto;
   visibility: hidden;
   transform: translateY(5px);
+  opacity: 0;
   transition: all 0.4s;
 
   @media only screen and (max-width: 900px) {
@@ -79,7 +80,7 @@ const Info = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-  
+
   &:nth-child(2) {
     width: 17.5rem;
   }

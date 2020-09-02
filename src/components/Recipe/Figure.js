@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Fig = styled.figure`
   height: 30rem;
@@ -42,20 +42,33 @@ const Title = styled.h1`
   & span {
     box-decoration-break: clone;
     padding: 1.3rem 2rem;
-  background: linear-gradient(315deg, rgba(221,14,80,1) 22%, rgba(240,169,45,1) 100%);
+    background: linear-gradient(
+      315deg,
+      rgba(221, 14, 80, 1) 22%,
+      rgba(240, 169, 45, 1) 100%
+    );
+  }
+
+  @media only screen and (max-width: 500px) {
+    & {
+      font-size: 1.75rem;
+    }
+    & span {
+    padding: 1rem 1.5rem;
+
+    }
   }
 `;
 
-
 const Figure = (props) => {
-    return (
-        <Fig>
-        <Img src={props.data.image} alt={props.data.title} />
-        <Title>
-          <span>{props.data.title}</span>
-        </Title>
-      </Fig>
-    )
-}
+  return (
+    <Fig>
+      <Img src={props.data.image} alt={props.data.title} />
+      <Title>
+        <span>{props.data.title}</span>
+      </Title>
+    </Fig>
+  );
+};
 
-export default Figure
+export default Figure;

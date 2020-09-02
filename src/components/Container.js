@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import useFetch from "use-http";
 import styled from "styled-components";
 
 import { apiKey } from "../api";
 import usePersistedState from "../hooks/usePersistedState";
 import useQuery from "../hooks/useQuery";
+import useWindowSize from "../hooks/useWindowSize";
+import { useHistory } from "react-router-dom";
 
 import Header, { Logo } from "./Header";
 import SearchList from "./SearchList";
 import Recipe from "./Recipe/RecipeContainer";
 import ShoppingList from "./ShoppingList";
-import { useHistory } from "react-router-dom";
+import MobileMenu from "./MobileMenu";
 
 const Wrapper = styled.div`
   max-width: 120rem;
@@ -35,7 +37,7 @@ const Wrapper = styled.div`
   }
   @media only screen and (max-width: 900px) {
     & {
-      grid-template-rows: 10rem repeat(3, minmax(100rem, auto));
+      grid-template-rows: 10rem 1fr;
       grid-template-columns: 1fr;
       grid-template-areas:
         "head"
@@ -56,12 +58,22 @@ const Placeholder = styled.div`
   & h1 {
     font-size: 2rem;
   }
+
+  @media only screen and (max-width: 900px) {
+    & {
+      height: 90vh;
+    }
+  }
 `;
 
 const Container = () => {
+  const width = useWindowSize().width;
+
   const query = useQuery();
 
   const history = useHistory();
+
+  const [mobileMenu, setMobileMenu] = useState("search");
 
   const [shoppingList, setShoppingList] = usePersistedState("shopping", []);
 
@@ -195,49 +207,68 @@ const Container = () => {
     }
   };
 
+  const handleDeleteAllShoppingItems = () => {
+    setShoppingList([]);
+  };
+
+  const handleMobileMenu = (menu) => {
+    setMobileMenu(menu);
+  };
+
   return (
-    <Wrapper>
-      <Header
-        handleSearch={handleSearch}
-        handleRecipe={handleRecipe}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        favorites={favorites}
-        loading={loading}
-      />
-      {!searchData && !recipeData && (
-        <Placeholder>
-          <Logo
-            src="logo.png"
-            alt="Logo"
-            style={{ marginLeft: 0, height: "8rem" }}
-          />
-          <h1>Search through hundreds of thousands of recipes.</h1>
-        </Placeholder>
-      )}
-      {searchData && (
-        <SearchList handleRecipe={handleRecipe} data={searchData} />
-      )}
-      {recipeData && (
-        <Recipe
-          servings={servings}
-          amounts={amounts}
-          data={recipeData}
+    <>
+      <Wrapper>
+        <Header
+          handleSearch={handleSearch}
+          handleRecipe={handleRecipe}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
           favorites={favorites}
-          shoppingList={shoppingList}
-          setShoppingList={setShoppingList}
-          handleDecreaseServings={handleDecreaseServings}
-          handleIncreaseServings={handleIncreaseServings}
-          handleFavorites={handleFavorites}
-          handleShoppingList={handleShoppingList}
+          loading={loading}
+        />
+        {!searchData && !recipeData && (
+          <Placeholder>
+            <Logo
+              src="logo.png"
+              alt="Logo"
+              style={{ marginLeft: 0, height: "8rem" }}
+            />
+            <h1>Search through hundreds of thousands of recipes.</h1>
+          </Placeholder>
+        )}
+        {(mobileMenu === "search" || width > 900) && searchData && (
+          <SearchList handleRecipe={handleRecipe} data={searchData} />
+        )}
+        {(mobileMenu === "recipe" || width > 900) && recipeData && (
+          <Recipe
+            servings={servings}
+            amounts={amounts}
+            data={recipeData}
+            favorites={favorites}
+            shoppingList={shoppingList}
+            setShoppingList={setShoppingList}
+            handleDecreaseServings={handleDecreaseServings}
+            handleIncreaseServings={handleIncreaseServings}
+            handleFavorites={handleFavorites}
+            handleShoppingList={handleShoppingList}
+          />
+        )}
+        {(mobileMenu === "list" || width > 900) && recipeData && (
+          <ShoppingList
+            shoppingList={shoppingList}
+            handleChangeShoppingItem={handleChangeShoppingItem}
+            handleDeleteShoppingItem={handleDeleteShoppingItem}
+            handleDeleteAllShoppingItems={handleDeleteAllShoppingItems}
+          />
+        )}
+      </Wrapper>
+      {width < 900 && (
+        <MobileMenu
+          mobileMenu={mobileMenu}
+          handleMobileMenu={handleMobileMenu}
         />
       )}
-      <ShoppingList
-        shoppingList={shoppingList}
-        handleChangeShoppingItem={handleChangeShoppingItem}
-        handleDeleteShoppingItem={handleDeleteShoppingItem}
-      />
-    </Wrapper>
+    </>
   );
 };
 
