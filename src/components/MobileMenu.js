@@ -40,7 +40,7 @@ const Button = styled.button`
   }
 `;
 
-const MobileMenu = ({ mobileMenu, handleMobileMenu }) => {
+const MobileMenu = ({ handleMobileMenu }) => {
   return (
     <Container>
       <Button onClick={() => handleMobileMenu("search")}>
