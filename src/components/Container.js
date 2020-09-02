@@ -117,6 +117,7 @@ const Container = () => {
       setAmounts(ingredientsAmount);
       setRecipeData(data);
       history.push(`search?q=${query.get("q")}&id=${id}`);
+      setMobileMenu("recipe")
     } catch (error) {
       alert(error);
     }
