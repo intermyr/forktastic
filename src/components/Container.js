@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useFetch from "use-http";
 import styled from "styled-components";
 
@@ -122,24 +122,24 @@ const Container = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (query.get("q")) {
-  //     handleSearch(query.get("q"));
-  //   } else {
-  //     searchData &&
-  //       history.push(`search?q=${searchTerm}&id=${query.get("id")}`);
-  //   }
-  //   if (query.get("id")) {
-  //     handleRecipe(query.get("id"));
-  //   } else {
-  //     recipeData &&
-  //       history.push(
-  //         `search?q=${searchTerm}&id=${recipeData ? recipeData.id : ""}`
-  //       );
-  //   }
+  useEffect(() => {
+    if (query.get("q")) {
+      handleSearch(query.get("q"));
+    } else {
+      searchData &&
+        history.push(`search?q=${searchTerm}&id=${query.get("id")}`);
+    }
+    if (query.get("id")) {
+      handleRecipe(query.get("id"));
+    } else {
+      recipeData &&
+        history.push(
+          `search?q=${searchTerm}&id=${recipeData ? recipeData.id : ""}`
+        );
+    }
 
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleDecreaseServings = () => {
     if (servings > 1) {
@@ -264,7 +264,6 @@ const Container = () => {
       </Wrapper>
       {width < 900 && (
         <MobileMenu
-          mobileMenu={mobileMenu}
           handleMobileMenu={handleMobileMenu}
         />
       )}
