@@ -6,6 +6,7 @@ import Ingredients from "./Ingredients";
 import Directions from "./Directions";
 
 const RecipeContainer = styled.div`
+  min-height: 85vh;
   background-color: #f9f5f3;
   border-top: 1px solid #fff;
   grid-area: "recipe";

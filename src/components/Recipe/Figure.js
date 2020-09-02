@@ -4,7 +4,6 @@ import styled from "styled-components";
 const Fig = styled.figure`
   height: 30rem;
   position: relative;
-  transform: scale(1.04) translateY(-1px);
   transform-origin: top;
   &::before {
     content: "";

@@ -28,14 +28,6 @@ const Delete = styled.button`
   }
 `;
 
-const Container = styled.div`
-  padding: 3rem 2rem;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  grid-area: shopping;
-`;
-
 const DeleteAll = styled.button`
   visibility: hidden;
   opacity: 0;
@@ -53,6 +45,20 @@ const DeleteAll = styled.button`
   }
 `;
 
+const Container = styled.div`
+  min-height: 85vh;
+  padding: 3rem 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  grid-area: shopping;
+
+  &:hover ${DeleteAll} {
+    opacity: 1;
+    visibility: visible;
+  }
+`;
+
 const Heading = styled.h2`
   font-size: 1.8rem;
   font-weight: 600;
@@ -64,11 +70,6 @@ const Heading = styled.h2`
   display: inline-flex;
   align-items: center;
   justify-content: flex-end;
-
-  &:hover ${DeleteAll} {
-    opacity: 1;
-    visibility: visible;
-  }
 `;
 
 const Placeholder = styled.p`

@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { ReactComponent as RecipeSvg } from "../icons/recipe.svg";
 
 const Container = styled.nav`
-  height: 5rem;
+  height: 7rem;
+  width: 100%;
   background-color: #f9f5f3;
   position: sticky;
   bottom: 0;
@@ -29,8 +30,8 @@ const Button = styled.button`
   flex: 1 0 2;
 
   & svg {
-    height: 2rem;
-    width: 2rem;
+    height: 2.5rem;
+    width: 2.5rem;
     fill: currentColor;
     margin-bottom: 2px;
   }
