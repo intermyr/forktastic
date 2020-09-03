@@ -8,4 +8,4 @@
 - Create shopping lists
 
 Made with create-react-app and styled-components  
-Powered by spoonacular.com
+Powered by [spoonacular.com](https://spoonacular.com/)
