@@ -1,4 +1,4 @@
-![](https://forktastic-app.netlify.app/logo.png)
+![](https://imgur.com/zy39NyX)
 
 ## Forktastic: Search through hundreds of thousands of recipes.
 
