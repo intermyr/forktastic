@@ -1,4 +1,4 @@
-![](https://imgur.com/zy39NyX)
+![](https://imgur.com/a/dq4ZIV8)
 
 ## Forktastic: Search through hundreds of thousands of recipes.
 
